@@ -10,13 +10,18 @@
     width: 100%;
     height: 3vw;
 }
-.contact-data-footer p {
+.contact-data-footer a {
     margin: 0;
 }
-.contact-data-footer a {
+#contact-us-btn {
     color: var(--fourth-palette-colour);
-    text-decoration: none;
+    background-color: var(--first-palette-colour);
+    border: 1px solid var(--fourth-palette-colour);
+    border-radius: 5px;
+    width: 55px;
+    height: 25px;
 }
+
 @media screen and (max-width: 768px) {
     .contact-data-footer p{
         font-size: 8px;

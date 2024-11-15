@@ -1,11 +1,12 @@
 import React from 'react';
 import "../../../css/footer.css";
 import "../../../css/variables.css";
+import {NavLink} from "react-router-dom";
 
 const Footer = () => {
     return (
         <footer className="contact-data-footer">
-            <p>Contact us at: <a href="mailto:info@growl.com">info@growl.com</a></p>
+            <p>Contact us through: <NavLink to={"/contact-us"} id={"contact-us-btn"}>Contact form</NavLink></p>
         </footer>
     );
 };

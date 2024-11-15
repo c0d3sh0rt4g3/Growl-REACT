@@ -19,7 +19,7 @@ body{
   font-size: 65px;
 }
 
-a {
+#back-to-home-btn {
     outline: 0;
     color: var(--first-palette-colour);
     background-color: var(--fourth-palette-colour);

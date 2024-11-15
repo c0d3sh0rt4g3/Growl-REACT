@@ -9,7 +9,7 @@ const NotFound = () => {
             <main id="error-texts-container">
                 <h1 id="error-type">404 Page Not Found</h1>
                 <p>Sorry, but the page you were trying to view does not exist.</p>
-                <NavLink to={"/"} className={"btn btn-outline-primary"}> Go back to the main page</NavLink>
+                <NavLink to={"/"} id={"back-to-home-btn"}> Go back to the main page</NavLink>
             </main>
         </>
     );
