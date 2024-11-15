@@ -1,0 +1,81 @@
+#growl-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+    background-color: var(--first-palette-colour);
+}
+
+#logo-and-name-container{
+    display: flex;
+    justify-content: space-around;
+    width: 100px;
+}
+
+#logo-and-name-container h3{
+    display: flex;
+    align-items: center;
+    outline: 0;
+    color: var(--fourth-palette-colour);
+}
+
+.header-btn {
+    color: var(--fourth-palette-colour);
+    background-color: var(--first-palette-colour);
+    border: 1px solid var(--fourth-palette-colour);
+    border-radius: 5px;
+    width: 55px;
+    height: 25px;
+}
+
+#username{
+    color: var(--fourth-palette-colour);
+    text-decoration: none;
+    align-self: center;
+}
+
+#sign-in-btn{
+    background-color: var(--fourth-palette-colour);
+    color: var(--first-palette-colour);
+}
+
+.contact-data-footer {
+    position: fixed;
+    background-color: var(--first-palette-colour);
+    color: var(--fourth-palette-colour);
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    bottom: 0;
+    width: 100%;
+    height: 3vw;
+}
+.contact-data-footer p {
+    margin: 0;
+}
+.contact-data-footer a {
+    color: var(--fourth-palette-colour);
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    #growl-header {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 10px;
+    }
+    
+    .header-btn {
+        margin-left: 0;
+        margin-top: 10px;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-data-footer p{
+        font-size: 8px;
+    }
+}
