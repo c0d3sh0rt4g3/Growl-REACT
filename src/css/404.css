@@ -1,0 +1,29 @@
+body{
+  background-color: var(--first-palette-colour);
+  color: var(--fourth-palette-colour);
+}
+#rotating-knife {
+  width: 300px;
+  animation: rotation 0.45s forwards linear;
+}
+
+#error-texts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 150px;
+}
+
+#error-type{
+  font-size: 65px;
+}
+
+@keyframes rotation {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(calc(105vw - 100%)) rotate(360deg);
+  }
+}
