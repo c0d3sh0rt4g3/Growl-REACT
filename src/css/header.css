@@ -6,6 +6,11 @@
     background-color: var(--first-palette-colour);
 }
 
+#growl-header a {
+    outline: 0;
+    color: var(--fourth-palette-colour);
+}
+
 #logo-and-name-container{
     display: flex;
     justify-content: space-around;
@@ -15,8 +20,6 @@
 #logo-and-name-container h3{
     display: flex;
     align-items: center;
-    outline: 0;
-    color: var(--fourth-palette-colour);
 }
 
 .header-btn {
@@ -39,43 +42,17 @@
     color: var(--first-palette-colour);
 }
 
-.contact-data-footer {
-    position: fixed;
-    background-color: var(--first-palette-colour);
-    color: var(--fourth-palette-colour);
-    text-align: center;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    bottom: 0;
-    width: 100%;
-    height: 3vw;
-}
-.contact-data-footer p {
-    margin: 0;
-}
-.contact-data-footer a {
-    color: var(--fourth-palette-colour);
-    text-decoration: none;
-}
-
 @media screen and (max-width: 768px) {
     #growl-header {
         flex-direction: column;
         height: auto;
         padding-bottom: 10px;
     }
-    
+
     .header-btn {
         margin-left: 0;
         margin-top: 10px;
         width: auto;
         height: auto;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .contact-data-footer p{
-        font-size: 8px;
     }
 }

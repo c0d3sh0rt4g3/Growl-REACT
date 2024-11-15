@@ -1,0 +1,24 @@
+.contact-data-footer {
+    position: fixed;
+    background-color: var(--first-palette-colour);
+    color: var(--fourth-palette-colour);
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    bottom: 0;
+    width: 100%;
+    height: 3vw;
+}
+.contact-data-footer p {
+    margin: 0;
+}
+.contact-data-footer a {
+    color: var(--fourth-palette-colour);
+    text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+    .contact-data-footer p{
+        font-size: 8px;
+    }
+}

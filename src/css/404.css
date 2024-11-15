@@ -19,6 +19,15 @@ body{
   font-size: 65px;
 }
 
+a {
+    outline: 0;
+    color: var(--first-palette-colour);
+    background-color: var(--fourth-palette-colour);
+    border-radius: 5px;
+    width: 200px;
+    height: 20px;
+}
+
 @keyframes rotation {
   0% {
     transform: translateX(0) rotate(0deg);
