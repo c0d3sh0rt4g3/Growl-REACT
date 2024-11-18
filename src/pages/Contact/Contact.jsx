@@ -21,6 +21,12 @@ const Contact = () => {
         })
     }
 
+    // We check if the email is valid by testing it through a regex that checks if the mail given follows a common email structure
+    const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+
+    // We check if the phone number is valid by testing it through a regex that checks if it has 9 digits and the optional prefix +34
+    const validatePhone = (phone) => /^(\+34)?\d{9}$/.test(phone)
+
     const {name, surname, email, phone} = contactData;
 
     return (
@@ -29,6 +35,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
+                    id="name"
                     name="name"
                     placeholder="Name"
                     value={name}
@@ -36,6 +43,7 @@ const Contact = () => {
                 />
                 <input
                     type="text"
+                    id="surname"
                     name="surname"
                     placeholder="Surname"
                     value={surname}
@@ -43,6 +51,7 @@ const Contact = () => {
                 />
                 <input
                     type="text"
+                    id="email"
                     name="email"
                     placeholder="Email"
                     value={email}
@@ -50,6 +59,7 @@ const Contact = () => {
                 />
                 <input
                     type="text"
+                    id="phone"
                     name="phone"
                     placeholder="Phone Number"
                     value={phone}
