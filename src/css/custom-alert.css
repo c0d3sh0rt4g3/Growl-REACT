@@ -1,38 +1,36 @@
-/* Custom alert styles */
 .custom-alert {
-  display: flex;              /* Use flexbox to center the modal */
-  position: fixed;            /* Fixed position on the screen */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  justify-content: center;    /* Horizontally center */
-  align-items: center;        /* Vertically center */
-  z-index: 9999;              /* Make sure it's above other elements */
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 45vw;
 }
 
-.alert-content {
-  background-color: #f44336;  /* Red background */
-  color: white;               /* White text */
-  border-radius: 5px;         /* Rounded corners */
-  padding: 20px;
-  text-align: center;
-  width: 300px;               /* Fixed width */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+.custom-alert.success {
+    background-color: #DBE7C9;
+    color: #294B29;
 }
 
-.alert-content button {
-  background-color: white;
-  color: #f44336;             /* Red button */
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
+.custom-alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
 }
 
-.alert-content button:hover {
-  background-color: #f1f1f1;
+.custom-alert .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: inherit;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 10px;
 }
