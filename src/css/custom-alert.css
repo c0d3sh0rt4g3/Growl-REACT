@@ -1,0 +1,38 @@
+/* Custom alert styles */
+.custom-alert {
+  display: flex;              /* Use flexbox to center the modal */
+  position: fixed;            /* Fixed position on the screen */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  justify-content: center;    /* Horizontally center */
+  align-items: center;        /* Vertically center */
+  z-index: 9999;              /* Make sure it's above other elements */
+}
+
+.alert-content {
+  background-color: #f44336;  /* Red background */
+  color: white;               /* White text */
+  border-radius: 5px;         /* Rounded corners */
+  padding: 20px;
+  text-align: center;
+  width: 300px;               /* Fixed width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.alert-content button {
+  background-color: white;
+  color: #f44336;             /* Red button */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.alert-content button:hover {
+  background-color: #f1f1f1;
+}
