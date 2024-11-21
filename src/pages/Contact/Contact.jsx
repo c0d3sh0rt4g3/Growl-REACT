@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import CustomAlert from "./components/CustomAlert.jsx"
 import "../../css/login-signin.css"
 import InputField from "../components/InputField.jsx"
+import {validateEmail} from "../../helpers/validateEmail.js";
 
 const Contact = () => {
     // useState to store form data introduced on its fields.
@@ -23,6 +24,7 @@ const Contact = () => {
     // useState to store parameters to show an alert using CustomAlert component
     const [alert, setAlert] = useState({ show: false, message: "", type: "" })
 
+    // Function to handle the submission of the form
     const handleSubmit = (e) => {
         e.preventDefault()
         const hasErrors = Object.values(errors).some((error) => error !== "")
@@ -58,7 +60,7 @@ const Contact = () => {
             email: "",
             phone: "",
             message: ""
-        });
+        })
 
         setErrors({
             name: "",
@@ -66,7 +68,7 @@ const Contact = () => {
             email: "",
             phone: "",
             message: ""
-        });
+        })
 
         console.log(`Name: ${contactData.name}\nSurname: ${contactData.surname}\nEmail: ${contactData.email}\nPhone: ${contactData.phone}`)
     }
@@ -80,6 +82,7 @@ const Contact = () => {
         })
     }
 
+    // Function to validate fields on blur and store errors on the errors useState
     const handleBlur = (e) => {
         const { name, value } = e.target
         const validationError = validateField(name, value)
@@ -89,6 +92,7 @@ const Contact = () => {
         })
     }
 
+    // Function to validate fields and return an error if gotten one
     const validateField = (name, value) => {
         let error = ""
         if (name === "email" && !validateEmail(value)) {
@@ -100,9 +104,6 @@ const Contact = () => {
         }
         return error
     }
-
-    // We check if the email is valid by testing it through a regex that checks if the mail given follows a common email structure
-    const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
 
     // We check if the phone number is valid by testing it through a regex that checks if it has 9 digits and the optional prefix +34
     const validatePhone = (phone) => /^(\+34)?\d{9}$/.test(phone)
