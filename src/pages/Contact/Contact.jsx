@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import CustomAlert from "./components/CustomAlert.jsx";
+import React, { useState } from "react"
+import CustomAlert from "./components/CustomAlert.jsx"
 import "../../css/login-signin.css"
+import InputField from "../components/InputField.jsx"
+
 const Contact = () => {
     const [contactData, setContactData] = useState({
         name: "",
@@ -18,10 +20,10 @@ const Contact = () => {
     })
     const [alert, setAlert] = useState({ show: false, message: "", type: "" })
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        const hasErrors = Object.values(errors).some(error => error !== "")
-        const hasEmptyFields = Object.values(contactData).some(data => data === "")
+        const hasErrors = Object.values(errors).some((error) => error !== "")
+        const hasEmptyFields = Object.values(contactData).some((data) => data === "")
         if (hasErrors) {
             setAlert({
                 show: true,
@@ -29,7 +31,7 @@ const Contact = () => {
                 type: "error"
             })
             return
-        } else if (hasEmptyFields){
+        } else if (hasEmptyFields) {
             setAlert({
                 show: true,
                 message: "The form has empty fields, you should fill them before submitting it.",
@@ -47,7 +49,7 @@ const Contact = () => {
         console.log(`Name: ${contactData.name}\nSurname: ${contactData.surname}\nEmail: ${contactData.email}\nPhone: ${contactData.phone}`)
     }
 
-    const handleChange = e => {
+    const handleChange = (e) => {
         const { name, value } = e.target
         setContactData({
             ...contactData,
@@ -66,9 +68,9 @@ const Contact = () => {
 
     const validateField = (name, value) => {
         let error = ""
-        if (name === 'email' && !validateEmail(value)) {
+        if (name === "email" && !validateEmail(value)) {
             error = `The email address introduced isn't valid`
-        } else if (name === 'phone' && !validatePhone(value)) {
+        } else if (name === "phone" && !validatePhone(value)) {
             error = `The phone number introduced isn't valid`
         } else if (value.length < 3) {
             error = `The field ${name} should be at least 3 characters long`
@@ -80,56 +82,48 @@ const Contact = () => {
 
     const validatePhone = (phone) => /^(\+34)?\d{9}$/.test(phone)
 
-    const { name, surname, email, phone, message} = contactData
+    const { name, surname, email, phone, message } = contactData
 
     return (
         <div id={"#account-form-container"}>
             <form id={"account-form"} onSubmit={handleSubmit}>
                 <h2>Contact Us:</h2>
-                <input
-                    type="text"
-                    className={"form-textbox"}
+                <InputField
                     id="name"
                     name="name"
                     placeholder="Name"
                     value={name}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.name}
                 />
-                {errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
-                <input
-                    type="text"
-                    className={"form-textbox"}
+                <InputField
                     id="surname"
                     name="surname"
                     placeholder="Surname"
                     value={surname}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.surname}
                 />
-                {errors.surname && <p style={{color: 'red'}}>{errors.surname}</p>}
-                <input
-                    type="text"
-                    className={"form-textbox"}
+                <InputField
                     id="email"
                     name="email"
                     placeholder="Email"
                     value={email}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.email}
                 />
-                {errors.email && <p style={{color: 'red'}}>{errors.email}</p>}
-                <input
-                    type="text"
-                    className={"form-textbox"}
+                <InputField
                     id="phone"
                     name="phone"
                     placeholder="Phone Number"
                     value={phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={errors.phone}
                 />
-                {errors.phone && <p style={{color: 'red'}}>{errors.phone}</p>}
                 <textarea
                     className={"form-textbox"}
                     id="message"
@@ -149,7 +143,7 @@ const Contact = () => {
                 <CustomAlert
                     message={alert.message}
                     type={alert.type}
-                    onClose={() => setAlert({...alert, show: false})}
+                    onClose={() => setAlert({ ...alert, show: false })}
                 />
             )}
         </div>
