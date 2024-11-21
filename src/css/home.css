@@ -1,0 +1,45 @@
+body{
+    color: var(--fourth-palette-colour);
+    background-image: url("../img/homepage-background-img.jpg");
+    background-repeat: no-repeat;
+}
+
+#welcoming-texts-container{
+    max-width: 80vh;
+    margin: 0 auto;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcoming-texts-container p, #welcome-text{
+    margin-top: 40px;
+    background-color: var(--first-palette-colour);
+    max-width: 70vw;
+    font-size: 55px;
+    text-align: center;
+}
+
+#welcome-text{
+    font-size: 65px;
+}
+
+@media only screen and (max-width: 768px) {
+    #welcoming-texts-container p {
+        font-size: 45px;
+    }
+    #welcome-text{
+        font-size: 55px;
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    #welcoming-texts-container p {
+        font-size: 30px;
+    }
+    #welcome-text{
+        font-size: 40px;
+    }
+}
