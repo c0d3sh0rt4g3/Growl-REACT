@@ -1,13 +1,13 @@
 import {createBrowserRouter} from "react-router-dom";
 import LayoutPublic from "../layouts/LayoutPublic/LayoutPublic.jsx";
-import NotFound from "../pages/NotFound.jsx";
+import NotFound from "../pages/NotFound/NotFound.jsx";
 import Home from "../pages/Home/Home.jsx";
 import SearchPage from "../pages/SearchPage/SearchPage.jsx";
 import Contact from "../pages/Contact/Contact.jsx";
 import Login from "../pages/Login/Login.jsx";
 import SignIn from "../pages/SignIn/SignIn.jsx";
 import Profile from "../pages/Profile/Profile.jsx";
-import EditAccount from "../pages/EditAccount/EditAccount.jsx";
+import EditProfile from "../pages/EditProfile/EditProfile.jsx";
 import Recipe from "../pages/Recipe/Recipe.jsx";
 
 export const router = createBrowserRouter ([
@@ -38,11 +38,13 @@ export const router = createBrowserRouter ([
             },
             {
                 path: "/profile",
-                element: <Profile/>
-            },
-            {
-                path: "/edit-account",
-                element: <EditAccount/>
+                element: <Profile/>,
+                children: [
+                    {
+                        path: "/profile/edit",
+                        element: <EditProfile/>
+                    }
+                ],
             },
             {
                 path: "/recipe/:id",
