@@ -6,11 +6,6 @@
     background-color: var(--first-palette-colour);
 }
 
-#growl-header a {
-    outline: 0;
-    color: var(--fourth-palette-colour);
-}
-
 #logo-and-name-container{
     display: flex;
     justify-content: space-around;
@@ -21,6 +16,18 @@
     display: flex;
     align-items: center;
 }
+#logo-and-name-container a {
+    outline: 0;
+    color: var(--fourth-palette-colour);
+}
+
+#header-btn-container{
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
 
 .header-btn {
     color: var(--fourth-palette-colour);
@@ -29,6 +36,8 @@
     border-radius: 5px;
     width: 55px;
     height: 25px;
+    line-height: 25px;
+    text-align: center;
 }
 
 #username{
@@ -37,9 +46,9 @@
     align-self: center;
 }
 
-#sign-in-btn {
-    background-color: var(--fourth-palette-colour) !important;
-    color: var(--first-palette-colour) !important;
+#sign-in-btn{
+    color: var(--first-palette-colour);
+    background-color: var(--fourth-palette-colour);
 }
 
 @media screen and (max-width: 768px) {
@@ -48,7 +57,7 @@
         height: auto;
         padding-bottom: 10px;
     }
-
+    
     .header-btn {
         margin-left: 0;
         margin-top: 10px;

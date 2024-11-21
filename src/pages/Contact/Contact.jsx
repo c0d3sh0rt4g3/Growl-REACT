@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import CustomAlert from "./components/CustomAlert.jsx"
-import "../../css/login-signin.css"
 import InputField from "../components/InputField.jsx"
 import {validateEmail} from "../../helpers/validateEmail.js";
 

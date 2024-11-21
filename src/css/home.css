@@ -1,6 +1,6 @@
 body{
     color: var(--fourth-palette-colour);
-    background-image: url("../img/homepage-background-img.jpg");
+    background-image: url("../assets/homepage-background-img.jpg");
     background-repeat: no-repeat;
 }
 
