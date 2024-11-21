@@ -4,6 +4,7 @@ import "../../css/login-signin.css"
 import InputField from "../components/InputField.jsx"
 
 const Contact = () => {
+    // useState to store form data introduced on its fields.
     const [contactData, setContactData] = useState({
         name: "",
         surname: "",
@@ -11,6 +12,7 @@ const Contact = () => {
         phone: "",
         message: ""
     })
+    // useState to store error messages for each form field.
     const [errors, setErrors] = useState({
         name: "",
         surname: "",
@@ -18,12 +20,14 @@ const Contact = () => {
         phone: "",
         message: ""
     })
+    // useState to store parameters to show an alert using CustomAlert component
     const [alert, setAlert] = useState({ show: false, message: "", type: "" })
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const hasErrors = Object.values(errors).some((error) => error !== "")
         const hasEmptyFields = Object.values(contactData).some((data) => data === "")
+        // We display an alert if we try to submit the form with incorrect fields
         if (hasErrors) {
             setAlert({
                 show: true,
@@ -31,6 +35,7 @@ const Contact = () => {
                 type: "error"
             })
             return
+        // We display an error if we try to submit the form with empty fields without
         } else if (hasEmptyFields) {
             setAlert({
                 show: true,
@@ -46,9 +51,27 @@ const Contact = () => {
             type: "success"
         })
 
+        // Reset contactData and errors state on succesful submit
+        setContactData({
+            name: "",
+            surname: "",
+            email: "",
+            phone: "",
+            message: ""
+        });
+
+        setErrors({
+            name: "",
+            surname: "",
+            email: "",
+            phone: "",
+            message: ""
+        });
+
         console.log(`Name: ${contactData.name}\nSurname: ${contactData.surname}\nEmail: ${contactData.email}\nPhone: ${contactData.phone}`)
     }
 
+    // Add/Overwrites changed fields data on contactData useState
     const handleChange = (e) => {
         const { name, value } = e.target
         setContactData({
@@ -78,8 +101,10 @@ const Contact = () => {
         return error
     }
 
+    // We check if the email is valid by testing it through a regex that checks if the mail given follows a common email structure
     const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
 
+    // We check if the phone number is valid by testing it through a regex that checks if it has 9 digits and the optional prefix +34
     const validatePhone = (phone) => /^(\+34)?\d{9}$/.test(phone)
 
     const { name, surname, email, phone, message } = contactData
