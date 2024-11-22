@@ -47,5 +47,8 @@ User related routes: <br>
   - `/profile/edit` Profile edit page
 - `recipe/:id` Specific recipe page
 
+Search route(`/search`): <br>
+Our recipe searching page.
+
 Errors: <br>
 Custom 404 error page when the route isn't found
