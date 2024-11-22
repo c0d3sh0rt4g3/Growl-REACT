@@ -14,7 +14,7 @@ body{
     align-items: center;
 }
 
-#welcoming-texts-container p, #welcome-text{
+#welcome-text-header, #welcome-text-body, #welcoming-texts-container a{
     margin-top: 40px;
     background-color: var(--first-palette-colour);
     max-width: 70vw;
@@ -22,8 +22,17 @@ body{
     text-align: center;
 }
 
-#welcome-text{
+#welcome-text-header{
     font-size: 65px;
+}
+
+#welcoming-texts-container a {
+    color: var(--fourth-palette-colour);
+    outline: 0;
+    border: 1px solid var(--fourth-palette-colour);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 50px;
 }
 
 @media only screen and (max-width: 768px) {
