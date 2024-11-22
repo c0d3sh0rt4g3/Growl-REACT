@@ -5,7 +5,7 @@ body{
     background-image: url("../assets/signin-background-img.jpg");
 }
 
-#sign-in-btn{
+#sign-up-btn{
     background-color: var(--fourth-palette-colour);
     color: var(--first-palette-colour);
 }

@@ -41,7 +41,7 @@ Root Route (`/`):<br>
 It displays the public layout and the home page (`Home`)
 
 User related routes: <br>
-- `/login`: Login page
+- `/login`: SignUp page
 - `/sign-in` Sign in page
 - `/profile` Profile page
   - `/profile/edit` Profile edit page

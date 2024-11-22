@@ -10,8 +10,8 @@ const Navbar = () => {
                 <h3><NavLink to={"/"} className={"btn btn-outline-primary"}>Growl</NavLink></h3>
             </section>
             <nav id="header-btn-container">
-                <NavLink to={"/sign-in"} className={"header-btn"} id={"sign-in-btn"}>Sign in</NavLink>
-                <NavLink to={"/login"} className={"header-btn"}>Login</NavLink>
+                <NavLink to={"/signup"} className={"header-btn"} id={"sign-up-btn"}>Sign up</NavLink>
+                <NavLink to={"/signin"} className={"header-btn"}>Sign in</NavLink>
             </nav>
         </header>
     );

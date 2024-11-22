@@ -22,7 +22,7 @@
 }
 
 #header-btn-container{
-    width: 120px;
+    width: 135px;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -46,9 +46,10 @@
     align-self: center;
 }
 
-#sign-in-btn{
+#sign-up-btn{
     color: var(--first-palette-colour);
     background-color: var(--fourth-palette-colour);
+    width: 65px;
 }
 
 @media screen and (max-width: 768px) {

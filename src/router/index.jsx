@@ -4,8 +4,8 @@ import NotFound from "../pages/NotFound/NotFound.jsx";
 import Home from "../pages/Home/Home.jsx";
 import SearchPage from "../pages/SearchPage/SearchPage.jsx";
 import Contact from "../pages/Contact/Contact.jsx";
-import Login from "../pages/Login/Login.jsx";
 import SignIn from "../pages/SignIn/SignIn.jsx";
+import SignUp from "../pages/SignUp/SignUp.jsx";
 import Profile from "../pages/Profile/Profile.jsx";
 import EditProfile from "../pages/EditProfile/EditProfile.jsx";
 import Recipe from "../pages/Recipe/Recipe.jsx";
@@ -29,12 +29,12 @@ export const router = createBrowserRouter ([
                 element: <Contact/>
             },
             {
-                path: "/login",
-                element: <Login/>
+                path: "/signin",
+                element: <SignIn/>
             },
             {
-                path: "/sign-in",
-                element: <SignIn/>
+                path: "/signup",
+                element: <SignUp/>
             },
             {
                 path: "/profile",
