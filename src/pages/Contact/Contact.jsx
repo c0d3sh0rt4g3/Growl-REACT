@@ -110,7 +110,7 @@ const Contact = () => {
     const { name, surname, email, phone, message } = contactData
 
     return (
-        <div id={"#account-form-container"}>
+        <main id={"#account-form-container"}>
             <form id={"account-form"} onSubmit={handleSubmit}>
                 <h2>Contact Us:</h2>
                 <InputField
@@ -171,7 +171,7 @@ const Contact = () => {
                     onClose={() => setAlert({ ...alert, show: false })}
                 />
             )}
-        </div>
+        </main>
     )
 }
 
