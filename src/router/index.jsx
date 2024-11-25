@@ -1,14 +1,16 @@
 import {createBrowserRouter} from "react-router-dom";
+import {lazy} from "react";
 import LayoutPublic from "../layouts/LayoutPublic/LayoutPublic.jsx";
-import NotFound from "../pages/NotFound/NotFound.jsx";
+const NotFound  = lazy(() => import("../pages/NotFound/NotFound.jsx"))
 import Home from "../pages/Home/Home.jsx";
 import SearchPage from "../pages/SearchPage/SearchPage.jsx";
-import Contact from "../pages/Contact/Contact.jsx";
+const Contact = lazy(() => import("../pages/Contact/Contact.jsx"))
 import SignIn from "../pages/SignIn/SignIn.jsx";
 import SignUp from "../pages/SignUp/SignUp.jsx";
-import Profile from "../pages/Profile/Profile.jsx";
-import EditProfile from "../pages/EditProfile/EditProfile.jsx";
-import Recipe from "../pages/Recipe/Recipe.jsx";
+const Profile = lazy(() => import("../pages/Profile/Profile.jsx"))
+const EditProfile = lazy(() => import("../pages/EditProfile/EditProfile.jsx"))
+const Recipe = lazy(() => import("../pages/Recipe/Recipe.jsx"))
+
 
 export const router = createBrowserRouter ([
     {
