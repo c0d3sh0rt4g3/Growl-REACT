@@ -132,7 +132,7 @@ const Contact = () => {
                         <p className="error-message">{errors.message}</p>
                     )}
 
-                    <button id="form-login-btn" type="submit" disabled={isSubmitting}>
+                    <button id="send-contact-data-btn" type="submit" disabled={isSubmitting}>
                     Send
                     </button>
                 </form>

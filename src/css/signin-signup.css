@@ -53,7 +53,7 @@ a:visited{
     outline: none;
 }
 
-#form-signin-btn{
+#form-signin-btn, #send-contact-data-btn{
     margin-left: 15px;
     background-color: var(--fourth-palette-colour);
     color: var(--first-palette-colour);
