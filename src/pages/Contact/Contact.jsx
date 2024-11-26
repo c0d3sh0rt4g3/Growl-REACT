@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import { Formik } from "formik"
 import * as Yup from "yup"
 import CustomAlert from "../components/CustomAlert.jsx";
+import {validateEmailRegex} from "../../helpers/validateEmail.js";
 
 const Contact = () => {
     // useState to store parameters to show an alert using CustomAlert component
@@ -16,7 +17,7 @@ const Contact = () => {
             .min(3, "Surname should be at least 3 characters long")
             .required("Surname is required"),
         email: Yup.string()
-            .email("Invalid email address")
+            .matches(validateEmailRegex, "The email address introduced isn't valid")
             .required("Email is required"),
         phone: Yup.string()
             .matches(/^(\+34)?\d{9}$/, "Phone number is invalid")
@@ -27,7 +28,7 @@ const Contact = () => {
     })
 
     // Handle form submission
-    const handleSubmit = (error, { resetForm }) => {
+    const handleSubmit = ({ resetForm }) => {
         setAlert({
             show: true,
             message: "Contact data sent successfully!",

@@ -1,2 +1,2 @@
-// We check if the email is valid by testing it through a regex that checks if the mail given follows a common email structure
-export const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+// Regex to check if an email is valid
+export const validateEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
