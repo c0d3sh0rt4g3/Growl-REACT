@@ -39,7 +39,6 @@ const SignUp = () => {
 
     const handleSubmit = async (values, { setSubmitting }) => {
         try {
-            // Simulando una función de registro
             await signUp(values.email, values.password)
             setAlert({
                 show: true,

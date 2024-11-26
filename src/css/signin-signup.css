@@ -42,6 +42,10 @@ a:visited{
     border-radius: 20px;
 }
 
+#account-form p a{
+    text-decoration: underline var(--fourth-palette-colour);
+}
+
 .form-textbox{
     width: 220px;
     height: 35px;
