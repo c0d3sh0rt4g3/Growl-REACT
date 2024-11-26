@@ -75,6 +75,17 @@ a:visited{
     justify-content: space-evenly;
     align-items: center;
 }
+
+.error-message{
+    border-radius: 5px;
+    padding: 2px;
+    color: var(--font-error-colour);
+    justify-content: center;
+    width: 220px;
+    margin-top: 5px;
+    background-color: var(--background-error-colour);
+}
+
 @media screen and (max-width: 1800px){
     body {
         background-image: url('../assets/signin-background-img-for-smaller-screens.jpg');

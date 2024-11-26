@@ -1,9 +1,0 @@
-.error-message{
-    border-radius: 5px;
-    padding: 2px;
-    color: var(--font-error-colour);
-    justify-content: center;
-    width: 220px;
-    margin-top: 5px;
-    background-color: var(--background-error-colour);
-}
