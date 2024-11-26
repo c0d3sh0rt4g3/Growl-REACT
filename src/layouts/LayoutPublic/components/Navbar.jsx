@@ -19,7 +19,8 @@ const Navbar = () => {
         }
     }
 
-    const username = JSON.parse(localStorage.getItem("currentUser")).username
+    const username = localStorage.getItem("currentUser")
+
     return (
         <header id="growl-header">
             <section id="logo-and-name-container">
@@ -29,8 +30,8 @@ const Navbar = () => {
             <nav id="header-btn-container">
                 {user ? (
                     <>
-                        <NavLink to={"/profile"} id={"username"}>{username}</NavLink>
-                        <button onClick={handleSignOut} className={"header-btn"}>Sign out</button>
+                        <NavLink to={"/profile"} id={"username"}>{JSON.parse(username).username}</NavLink>
+                        <button onClick={handleSignOut} id={"sign-out-btn"} className={"header-btn"}>Sign out</button>
                     </>
                 ) : (
                     <>

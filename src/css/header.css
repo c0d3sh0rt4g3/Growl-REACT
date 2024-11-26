@@ -29,7 +29,7 @@
     align-items: center;
 }
 
-.header-btn {
+.header-btn, #sign-out-btn {
     color: var(--fourth-palette-colour);
     background-color: var(--first-palette-colour);
     border: 1px solid var(--fourth-palette-colour);
@@ -38,6 +38,11 @@
     height: 25px;
     line-height: 25px;
     text-align: center;
+}
+
+#sign-out-btn {
+    width: 75px;
+    line-height: 15px;
 }
 
 #username{
