@@ -1,59 +1,103 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import "../../css/search-page.css"
-import FoodCard from "./components/FoodCard.jsx";
+import FoodCard from "./components/FoodCard.jsx"
 
 const SearchPage = () => {
-    const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [results, setResults] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    // Nest page URL
+    const [nextPage, setNextPage] = useState(null)
+    // Previous pages history
+    const [prevPages, setPrevPages] = useState([])
+    const fetchData = async (url, addToHistory = true) => {
+        try {
+            setLoading(true)
+            const response = await fetch(url)
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
+            const data = await response.json()
+            // Overwrite the results
+            setResults(data.hits.map(hit => hit.recipe))
+
+            // Updates the link to the next page
+            setNextPage(data._links?.next?.href || null)
+
+            // Adds the page to the pages history
+            if (addToHistory) {
+                setPrevPages(prev => [...prev, url])
+            }
+
+            setLoading(false)
+        } catch (error) {
+            console.error("Error fetching data:", error)
+            setError(error.message)
+            setLoading(false)
+        }
+    }
 
     useEffect(() => {
-        const callAPI = async () => {
-            try {
-                const query = "";
-                const diet = "high-protein";
-                const appId = import.meta.env.VITE_EDAMAM_APP_ID;
-                const appKey = import.meta.env.VITE_EDAMAM_APP_KEY;
+        const query = ""
+        const diet = "high-protein"
+        const appId = import.meta.env.VITE_EDAMAM_APP_ID
+        const appKey = import.meta.env.VITE_EDAMAM_APP_KEY
 
-                const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${appId}&app_key=${appKey}&diet=${diet}`;
-                console.log("Fetching data from:", url);
+        const initialUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${appId}&app_key=${appKey}&diet=${diet}`
 
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+        // Initial API call
+        fetchData(initialUrl)
+    }, [])
 
-                const data = await response.json();
-                setResults(data.hits.map(hit => hit.recipe));
-                setLoading(false);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                setError(error.message);
-                setLoading(false);
-            }
-        };
-        callAPI()
-    }, []); // Empty dependency array means this runs only on component mount
+    const loadNextPage = () => {
+        if (nextPage) fetchData(nextPage)
+    }
 
-    if (loading) {
-        return <div>Loading...</div>;
+    const loadPreviousPage = () => {
+        if (prevPages.length > 1) {
+            // Get the previous url
+            const previousPage = prevPages[prevPages.length - 2]
+
+            // Deletes the url from the previous pages list
+            setPrevPages(prev => prev.slice(0, -1))
+
+            // Loads previous page without adding it to history
+            fetchData(previousPage, false)
+        }
+    }
+
+    if (loading && results.length === 0) {
+        return <div>Loading...</div>
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div>Error: {error}</div>
     }
 
     return (
         <div id="search-results-container">
             {results.length > 0 ? (
-                results.map((food, index) => (
-                    <FoodCard key={index} food={food} />
-                ))
+                <>
+                    {results.map((food, index) => (
+                        <FoodCard key={index} food={food} />
+                    ))}
+                    <div className="pagination-buttons">
+                        <button onClick={loadPreviousPage} disabled={prevPages.length <= 1 || loading}>
+                            Previous Page
+                        </button>
+                        {nextPage && (
+                            <button onClick={loadNextPage} disabled={loading}>
+                                {loading ? "Loading..." : "Next Page"}
+                            </button>
+                        )}
+                    </div>
+                </>
             ) : (
                 <div>No results found.</div>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default SearchPage;
+export default SearchPage
