@@ -84,6 +84,7 @@ const fetchData = async (url) => {
     }
 }
 ```
+![request_example.png](src%2Fassets%2FAPI_display_example.png)
 #### Local States in SearchPage
 
 - `results`: Holds the recipes fetched from the API.
@@ -113,6 +114,7 @@ const loadPreviousPage = () => {
     }
 }
 ```
+![pagination_example.png](src%2Fassets%2Fnext_and_prev_example.png)
 ### Dynamic User Interface
 
 The data fetched from the API is dynamically rendered using the FoodCard component. This component displays relevant 
