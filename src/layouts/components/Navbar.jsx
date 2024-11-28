@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import "../../../css/header.css";
-import {UserContext} from "../../../context/UserContext.jsx";
-import {signOut} from "../../../config/Firebase.jsx";
+import "../../css/header.css";
+import {UserContext} from "../../context/UserContext.jsx";
+import {signOut} from "../../config/Firebase.jsx";
 
 const Navbar = () => {
     const { user, setUser } = useContext(UserContext)
@@ -30,7 +30,7 @@ const Navbar = () => {
             <nav id="header-btn-container">
                 {user ? (
                     <>
-                        <NavLink to={"/profile"} id={"username"}>{JSON.parse(username).username}</NavLink>
+                        <NavLink to={"/profile"} id={"username"}>{JSON.parse(username).username || "User"}</NavLink>
                         <button onClick={handleSignOut} id={"sign-out-btn"} className={"header-btn"}>Sign out</button>
                     </>
                 ) : (
