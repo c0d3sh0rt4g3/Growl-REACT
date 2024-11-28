@@ -1,7 +1,7 @@
 body{
     color: var(--fourth-palette-colour);
     background-image: url("../assets/homepage-background-img.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat; 
 }
 
 #welcoming-texts-container{

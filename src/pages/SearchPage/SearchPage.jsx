@@ -51,7 +51,10 @@ const SearchPage = () => {
     }, [])
 
     const loadNextPage = () => {
-        if (nextPage) fetchData(nextPage)
+        if (nextPage) {
+            fetchData(nextPage)
+            scrollToTop()
+        }
     }
 
     const loadPreviousPage = () => {
@@ -64,7 +67,16 @@ const SearchPage = () => {
 
             // Loads previous page without adding it to history
             fetchData(previousPage, false)
+
+            scrollToTop()
         }
+    }
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
     }
 
     if (loading && results.length === 0) {
@@ -76,27 +88,30 @@ const SearchPage = () => {
     }
 
     return (
-        <div id="search-results-container">
-            {results.length > 0 ? (
-                <>
-                    {results.map((food, index) => (
-                        <FoodCard key={index} food={food} />
-                    ))}
-                    <div className="pagination-buttons">
-                        <button onClick={loadPreviousPage} disabled={prevPages.length <= 1 || loading}>
-                            Previous Page
-                        </button>
-                        {nextPage && (
-                            <button onClick={loadNextPage} disabled={loading}>
-                                {loading ? "Loading..." : "Next Page"}
-                            </button>
-                        )}
-                    </div>
-                </>
-            ) : (
-                <div>No results found.</div>
-            )}
-        </div>
+        <>
+            <div id="search-results-container">
+                {results.length > 0 ? (
+                    <>
+                        {results.map((food, index) => (
+                            <FoodCard key={index} food={food}/>
+                        ))}
+
+                    </>
+                ) : (
+                    <div>No results found.</div>
+                )}
+            </div>
+            <div id="pagination-buttons-container">
+                <button onClick={loadPreviousPage} disabled={prevPages.length <= 1 || loading}>
+                    Previous Page
+                </button>
+                {nextPage && (
+                    <button onClick={loadNextPage} disabled={loading}>
+                        {loading ? "Loading..." : "Next Page"}
+                    </button>
+                )}
+            </div>
+        </>
     )
 }
 
