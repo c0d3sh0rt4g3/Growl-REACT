@@ -1,4 +1,6 @@
 import React from "react"
+import "../../css/input-field.css"
+import "../../css/variables.css"
 
 const InputField = ({
     id,
@@ -22,7 +24,7 @@ const InputField = ({
                 onChange={onChange}
                 onBlur={onBlur}
             />
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p className={"error-message"}>{error}</p>}
         </div>
     )
 }

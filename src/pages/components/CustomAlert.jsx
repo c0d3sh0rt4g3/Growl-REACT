@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../../css/custom-alert.css"
+import "../../css/custom-alert.css"
 
 // A component to create a custom alert getting, message, type of alert and onClose as props
 const CustomAlert = ({ message, type, onClose }) => {

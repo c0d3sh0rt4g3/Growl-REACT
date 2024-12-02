@@ -10,9 +10,11 @@
     width: 100%;
     height: 3vw;
 }
+
 .contact-data-footer a {
     margin: 0;
 }
+
 #contact-us-btn {
     color: var(--fourth-palette-colour);
     background-color: var(--first-palette-colour);

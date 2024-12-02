@@ -1,5 +1,4 @@
 import React from 'react';
-import "../../css/404.css"
 import {NavLink} from "react-router-dom";
 
 const NotFound = () => {

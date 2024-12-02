@@ -6,11 +6,6 @@
     background-color: var(--first-palette-colour);
 }
 
-#growl-header a {
-    outline: 0;
-    color: var(--fourth-palette-colour);
-}
-
 #logo-and-name-container{
     display: flex;
     justify-content: space-around;
@@ -21,14 +16,33 @@
     display: flex;
     align-items: center;
 }
+#logo-and-name-container a {
+    outline: 0;
+    color: var(--fourth-palette-colour);
+}
 
-.header-btn {
+#header-btn-container{
+    width: 135px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.header-btn, #sign-out-btn {
     color: var(--fourth-palette-colour);
     background-color: var(--first-palette-colour);
     border: 1px solid var(--fourth-palette-colour);
     border-radius: 5px;
     width: 55px;
     height: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+
+#sign-out-btn {
+    width: 75px;
+    line-height: 15px;
 }
 
 #username{
@@ -37,9 +51,10 @@
     align-self: center;
 }
 
-#sign-in-btn {
-    background-color: var(--fourth-palette-colour) !important;
-    color: var(--first-palette-colour) !important;
+#sign-up-btn{
+    color: var(--first-palette-colour);
+    background-color: var(--fourth-palette-colour);
+    width: 65px;
 }
 
 @media screen and (max-width: 768px) {
@@ -48,7 +63,7 @@
         height: auto;
         padding-bottom: 10px;
     }
-
+    
     .header-btn {
         margin-left: 0;
         margin-top: 10px;

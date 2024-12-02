@@ -1,14 +1,18 @@
 import {createBrowserRouter} from "react-router-dom";
-import LayoutPublic from "../layouts/LayoutPublic/LayoutPublic.jsx";
-import NotFound from "../pages/NotFound/NotFound.jsx";
+import {lazy} from "react";
+import LayoutPublic from "../layouts/LayoutPublic.jsx";
 import Home from "../pages/Home/Home.jsx";
-import SearchPage from "../pages/SearchPage/SearchPage.jsx";
-import Contact from "../pages/Contact/Contact.jsx";
-import Login from "../pages/Login/Login.jsx";
 import SignIn from "../pages/SignIn/SignIn.jsx";
-import Profile from "../pages/Profile/Profile.jsx";
-import EditProfile from "../pages/EditProfile/EditProfile.jsx";
-import Recipe from "../pages/Recipe/Recipe.jsx";
+import SignUp from "../pages/SignUp/SignUp.jsx";
+import LayoutPrivate from "../layouts/LayoutPrivate.jsx";
+
+const Profile = lazy(() => import("../pages/Profile/Profile.jsx"))
+const EditProfile = lazy(() => import("../pages/EditProfile/EditProfile.jsx"))
+const Recipe = lazy(() => import("../pages/Recipe/Recipe.jsx"))
+const NotFound  = lazy(() => import("../pages/NotFound/NotFound.jsx"))
+const SearchPage = lazy(() => import("../pages/SearchPage/SearchPage.jsx"))
+const Contact = lazy(() => import("../pages/Contact/Contact.jsx"))
+
 
 export const router = createBrowserRouter ([
     {
@@ -21,34 +25,46 @@ export const router = createBrowserRouter ([
                 element: <Home/>
             },
             {
-                path: "/search",
-                element: <SearchPage/>
-            },
-            {
                 path: "/contact-us",
                 element: <Contact/>
             },
             {
-                path: "/login",
-                element: <Login/>
-            },
-            {
-                path: "/sign-in",
+                path: "/signin",
                 element: <SignIn/>
             },
             {
-                path: "/profile",
+                path: "/signup",
+                element: <SignUp/>
+            },
+            {
+                path: "/recipe/:id",
+                element: <Recipe/>
+            }
+        ]
+    },
+    {
+        path: "/search",
+        element: <LayoutPrivate/>,
+        children: [
+            {
+                index: true,
+                element: <SearchPage/>
+            }
+        ]
+    },
+    {
+        path: "/profile",
+        element: <LayoutPrivate/>,
+        children: [
+            {
+                index: "/profile",
                 element: <Profile/>,
                 children: [
                     {
                         path: "/profile/edit",
                         element: <EditProfile/>
                     }
-                ],
-            },
-            {
-                path: "/recipe/:id",
-                element: <Recipe/>
+                ]
             }
         ]
     }
