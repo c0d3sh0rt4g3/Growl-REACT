@@ -89,6 +89,10 @@ const SearchPage = () => {
 
     return (
         <>
+            <div id="searchbar-container">
+                <input id="recipe-searchbar" type="text" placeholder="Which recipe are you searching for?"
+                       aria-label="Search bar"/>
+            </div>
             <div id="search-results-container">
                 {results.length > 0 ? (
                     <>
