@@ -3,14 +3,21 @@ import "../../css/search-page.css"
 import FoodCard from "./components/FoodCard.jsx"
 
 const SearchPage = () => {
+    const appId = import.meta.env.VITE_EDAMAM_APP_ID
+    const appKey = import.meta.env.VITE_EDAMAM_APP_KEY
+
     const [results, setResults] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
-    // Nest page URL
+    const [searchQuery, setSearchQuery] = useState("")
+    const [diet, setDiet] = useState("high-protein")
+    // Next page URL
     const [nextPage, setNextPage] = useState(null)
     // Previous pages history
     const [prevPages, setPrevPages] = useState([])
+
+    const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=${appId}&app_key=${appKey}&diet=${diet}`
+
     const fetchData = async (url, addToHistory = true) => {
         try {
             setLoading(true)
@@ -38,17 +45,12 @@ const SearchPage = () => {
         }
     }
 
+    // UseEffect that fetchs data from the api qhen mounted and when the seacrh query changes
     useEffect(() => {
-        const query = ""
-        const diet = "high-protein"
-        const appId = import.meta.env.VITE_EDAMAM_APP_ID
-        const appKey = import.meta.env.VITE_EDAMAM_APP_KEY
-
-        const initialUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${appId}&app_key=${appKey}&diet=${diet}`
-
-        // Initial API call
-        fetchData(initialUrl)
-    }, [])
+        if (searchQuery || searchQuery === "") {
+            fetchData(url)
+        }
+    }, [searchQuery])
 
     const loadNextPage = () => {
         if (nextPage) {
@@ -87,11 +89,18 @@ const SearchPage = () => {
         return <div>Error: {error}</div>
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            console.log(e.target.value)
+            setSearchQuery(e.target.value) // Actualiza el searchQuery
+        }
+    }
+
     return (
         <>
             <div id="searchbar-container">
                 <input id="recipe-searchbar" type="text" placeholder="Which recipe are you searching for?"
-                       aria-label="Search bar"/>
+                       aria-label="Search bar" onKeyDown={handleKeyDown}/>
             </div>
             <div id="search-results-container">
                 {results.length > 0 ? (
