@@ -9,14 +9,25 @@ const SearchPage = () => {
     const [results, setResults] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [searchQuery, setSearchQuery] = useState("")
-    const [diet, setDiet] = useState("high-protein")
+    const [searchQuery, setSearchQuery] = useState("salad")
+    const [diet, setDiet] = useState([])
+    const [health, setHealth] = useState([])
+    const [mealType, setMealType] = useState([])
     // Next page URL
     const [nextPage, setNextPage] = useState(null)
     // Previous pages history
     const [prevPages, setPrevPages] = useState([])
 
-    const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=${appId}&app_key=${appKey}&diet=${diet}`
+    // Construye la URL dinámicamente
+    const buildUrl = () => {
+        let baseUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=${appId}&app_key=${appKey}`
+
+        if (diet.length > 0) baseUrl += `&diet=${diet.join(',')}` // Concatenar los elementos seleccionados de 'diet'
+        if (health.length > 0) baseUrl += `&health=${health.join(',')}` // Concatenar los elementos seleccionados de 'health'
+        if (mealType.length > 0) baseUrl += `&mealType=${mealType.join(',')}` // Concatenar los elementos seleccionados de 'mealType'
+
+        return baseUrl
+    }
 
     const fetchData = async (url, addToHistory = true) => {
         try {
@@ -45,12 +56,13 @@ const SearchPage = () => {
         }
     }
 
-    // UseEffect that fetchs data from the api qhen mounted and when the seacrh query changes
     useEffect(() => {
-        if (searchQuery || searchQuery === "") {
+        // Llama a la API solo si hay una consulta de búsqueda
+        if (searchQuery) {
+            const url = buildUrl()
             fetchData(url)
         }
-    }, [searchQuery])
+    }, [searchQuery, diet, health, mealType]) // Ejecutar al cambiar filtros o la consulta
 
     const loadNextPage = () => {
         if (nextPage) {
@@ -81,26 +93,117 @@ const SearchPage = () => {
         })
     }
 
-    if (loading && results.length === 0) {
-        return <div>Loading...</div>
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>
-    }
-
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
             console.log(e.target.value)
-            setSearchQuery(e.target.value) // Actualiza el searchQuery
+            setSearchQuery(e.target.value)
+        }
+    }
+
+    const handleChange = (e) => {
+        setSearchQuery(e.target.value)
+    }
+
+    const handleFilterChange = (filterType, value) => {
+        switch (filterType) {
+            case "diet":
+                setDiet((prevDiet) =>
+                    prevDiet.includes(value)
+                        ? prevDiet.filter(item => item !== value) // Remove if already selected
+                        : [...prevDiet, value] // Add if not selected
+                )
+                break
+            case "health":
+                setHealth((prevHealth) =>
+                    prevHealth.includes(value)
+                        ? prevHealth.filter(item => item !== value) // Remove if already selected
+                        : [...prevHealth, value] // Add if not selected
+                )
+                break
+            case "mealType":
+                setMealType((prevMealType) =>
+                    prevMealType.includes(value)
+                        ? prevMealType.filter(item => item !== value) // Remove if already selected
+                        : [...prevMealType, value] // Add if not selected
+                )
+                break
+            default:
+                break
         }
     }
 
     return (
         <>
-            <div id="searchbar-container">
-                <input id="recipe-searchbar" type="text" placeholder="Which recipe are you searching for?"
-                       aria-label="Search bar" onKeyDown={handleKeyDown}/>
+            <div id="searchbar-container" className="searchbar-with-dropdown">
+                <input
+                    id="recipe-searchbar"
+                    type="text"
+                    placeholder="Which recipe are you searching for?"
+                    aria-label="Search bar"
+                    onKeyDown={handleKeyDown}
+                    onChange={handleChange}
+                />
+                <div id="filters-container" className="dropdown">
+                    <div className="dropdown-content">
+                        <div>
+                            <h4>Diet</h4>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={diet.includes("high-protein")}
+                                    onChange={() => handleFilterChange("diet", "high-protein")}
+                                />
+                                High Protein
+                            </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={diet.includes("low-carb")}
+                                    onChange={() => handleFilterChange("diet", "low-carb")}
+                                />
+                                Low Carb
+                            </label>
+                        </div>
+                        <div>
+                            <h4>Health</h4>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={health.includes("vegan")}
+                                    onChange={() => handleFilterChange("health", "vegan")}
+                                />
+                                Vegan
+                            </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={health.includes("vegetarian")}
+                                    onChange={() => handleFilterChange("health", "vegetarian")}
+                                />
+                                Vegetarian
+                            </label>
+                        </div>
+                        <div>
+                            <h4>Meal Type</h4>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={mealType.includes("breakfast")}
+                                    onChange={() => handleFilterChange("mealType", "breakfast")}
+                                />
+                                Breakfast
+                            </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={mealType.includes("dinner")}
+                                    onChange={() => handleFilterChange("mealType", "dinner")}
+                                />
+                                Dinner
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="search-results-container">
                 {results.length > 0 ? (
@@ -108,7 +211,6 @@ const SearchPage = () => {
                         {results.map((food, index) => (
                             <FoodCard key={index} food={food}/>
                         ))}
-
                     </>
                 ) : (
                     <div>No results found.</div>

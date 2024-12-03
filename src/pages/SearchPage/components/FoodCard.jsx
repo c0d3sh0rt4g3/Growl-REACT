@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FoodCard = ({food}) => {
-    const calories = food.calories.toFixed(2); // Redondea a 2 decimales
+    const calories = food.calories.toFixed(2)
     return (
         <div className="search-result">
             <img src={food.image} alt="Result food"/>

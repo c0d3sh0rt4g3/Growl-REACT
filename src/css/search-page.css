@@ -57,6 +57,8 @@ body{
 #searchbar-container{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 #pagination-buttons-container{
@@ -77,4 +79,31 @@ body{
     margin-left: 20px;
     width: 170px;
     height: 30px;
+}
+
+.searchbar-with-dropdown {
+    position: relative;
+}
+
+.searchbar-with-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Estilo del contenido del dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--first-palette-colour);
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.dropdown-content h4 {
+    margin: 0 0 10px 0;
+}
+
+.dropdown-content label {
+    display: flex;
+    margin-bottom: 5px;
 }
