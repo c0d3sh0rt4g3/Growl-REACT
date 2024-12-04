@@ -48,7 +48,8 @@ const SignUp = () => {
             const newUser = {
                 email: values.email,
                 username: values.user,
-                tags: []
+                tags: [],
+                bookmarks: []
             }
             users.push(newUser)
 
