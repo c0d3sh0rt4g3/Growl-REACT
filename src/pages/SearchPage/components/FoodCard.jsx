@@ -1,8 +1,10 @@
 import React from 'react'
 import bookmarkIcon from '../../../assets/bookmark.png'
+import {useNavigate} from "react-router-dom";
 
 const FoodCard = ({food, foodId}) => {
     const isBookmarked = (bookmarks) => bookmarks.some(bookmarked => bookmarked.id === foodId)
+    const navigate = useNavigate()
 
     const addToBookmarks = () => {
         const currentUser = JSON.parse(localStorage.getItem("currentUser"))
@@ -30,8 +32,11 @@ const FoodCard = ({food, foodId}) => {
         }
     }
     const calories = food.calories.toFixed(2)
+    const travelToRecipePage = () => {
+        navigate(`/search/recipe/${foodId}`)
+    }
     return (
-        <div className="search-result">
+        <div className="search-result" onClick={travelToRecipePage}>
             <img src={food.image} alt="Result food"/>
             <section>
                 <h4>{food.label}</h4>

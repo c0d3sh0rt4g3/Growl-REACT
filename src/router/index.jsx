@@ -35,10 +35,6 @@ export const router = createBrowserRouter ([
             {
                 path: "/signup",
                 element: <SignUp/>
-            },
-            {
-                path: "/recipe/:id",
-                element: <Recipe/>
             }
         ]
     },
@@ -49,6 +45,10 @@ export const router = createBrowserRouter ([
             {
                 index: true,
                 element: <SearchPage/>
+            },
+            {
+                path: "/search/recipe/:id",
+                element: <Recipe/>
             }
         ]
     },

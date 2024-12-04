@@ -70,8 +70,10 @@ const SearchPage = () => {
 
     useEffect(() => {
         const url = buildUrl()
-        fetchData(url, false) // Do not add to history on initial search load
-    }, [searchQuery]) // Fetch data whenever the searchQuery changes
+        // Do not add to history on initial search load
+        fetchData(url)
+        // Fetch data whenever the searchQuery changes
+    }, [searchQuery])
 
     const loadNextPage = () => {
         if (nextPage) {
@@ -185,7 +187,8 @@ const SearchPage = () => {
                 )}
             </div>
             <div id="pagination-buttons-container">
-                {prevPages.length > 1 && ( // Only show "Previous Page" button if there are previous pages
+                {prevPages.length > 1 && (
+                    // Only show "Previous Page" button if there are previous pages
                     <button onClick={loadPreviousPage} disabled={loading}>
                         Previous Page
                     </button>
