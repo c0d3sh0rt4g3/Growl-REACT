@@ -3,6 +3,7 @@ import "../../css/search-page.css"
 import FoodCard from "./components/FoodCard.jsx"
 import FilterRequirementCheckboxes from "./components/FilterRequirementCheckboxes.jsx"
 import {dietOptionsList, healthOptionsList} from "./helpers/healthAndDietOptions.js";
+import {getRecipeId} from "./helpers/getRecipeId.js";
 
 const SearchPage = () => {
     const appId = import.meta.env.VITE_EDAMAM_APP_ID
@@ -21,7 +22,6 @@ const SearchPage = () => {
     const [prevPages, setPrevPages] = useState([])
 
     const dietOptions = dietOptionsList
-
     const healthOptions = healthOptionsList
 
     const buildUrl = () => {
@@ -69,11 +69,9 @@ const SearchPage = () => {
     }
 
     useEffect(() => {
-        if (searchQuery !== null) {
-            const url = buildUrl()
-            fetchData(url)
-        }
-    }, [searchQuery])
+        const url = buildUrl()
+        fetchData(url, false) // Do not add to history on initial search load
+    }, [searchQuery]) // Fetch data whenever the searchQuery changes
 
     const loadNextPage = () => {
         if (nextPage) {
@@ -140,6 +138,11 @@ const SearchPage = () => {
         }
     }
 
+    const applyFilters = () => {
+        const url = buildUrl()
+        fetchData(url, false) // Prevent adding to history on filter apply
+    }
+
     return (
         <>
             <div id="searchbar-container" className="searchbar-with-dropdown">
@@ -153,6 +156,7 @@ const SearchPage = () => {
                 />
                 <div id="filters-container" className="dropdown">
                     <div className="dropdown-content">
+                        <button onClick={applyFilters}>Apply filters</button>
                         <FilterRequirementCheckboxes
                             title="Diet"
                             options={dietOptions}
@@ -171,21 +175,24 @@ const SearchPage = () => {
             <div id="search-results-container">
                 {results.length > 0 ? (
                     <>
-                        {results.map((food, index) => (
-                            <FoodCard key={index} food={food}/>
-                        ))}
+                        {results.map(food => {
+                            const foodId = getRecipeId(food);
+                            return <FoodCard key={foodId} food={food} foodId={foodId} />
+                        })}
                     </>
                 ) : (
                     <div>No results found.</div>
                 )}
             </div>
             <div id="pagination-buttons-container">
-                <button onClick={loadPreviousPage} disabled={prevPages.length <= 1 || loading}>
-                    Previous Page
-                </button>
+                {prevPages.length > 1 && ( // Only show "Previous Page" button if there are previous pages
+                    <button onClick={loadPreviousPage} disabled={loading}>
+                        Previous Page
+                    </button>
+                )}
                 {nextPage && (
                     <button onClick={loadNextPage} disabled={loading}>
-                        {loading ? "Loading..." : "Next Page"}
+                    {loading ? "Loading..." : "Next Page"}
                     </button>
                 )}
             </div>
