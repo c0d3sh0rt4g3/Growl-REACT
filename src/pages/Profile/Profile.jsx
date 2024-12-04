@@ -10,7 +10,7 @@ const Profile = () => {
             <aside id="user-data-column">
                 <img id="pfp" src={pfpImg} alt="your profile picture"/>
                 <h3 id="email">{user.email}</h3>
-                <p id="tags">tag1, tag2, tag3, tag4, tag5, tag6</p>
+                <p id="tags">{user.tags.length > 0 && user.tags.join(", ")}</p>
                 <button className="user-btn">Edit account details</button>
                 <button className="user-btn">Back to search page</button>
             </aside>
