@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import "../../css/search-page.css"
 import FoodCard from "./components/FoodCard.jsx"
+import FilterRequirementCheckboxes from "./components/FilterRequirementCheckboxes.jsx"
+import {dietOptionsList, healthOptionsList} from "./helpers/healthAndDietOptions.js";
 
 const SearchPage = () => {
     const appId = import.meta.env.VITE_EDAMAM_APP_ID
@@ -8,23 +10,34 @@ const SearchPage = () => {
 
     const [results, setResults] = useState([])
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+
     const [searchQuery, setSearchQuery] = useState("salad")
     const [diet, setDiet] = useState([])
     const [health, setHealth] = useState([])
-    const [mealType, setMealType] = useState([])
+
     // Next page URL
     const [nextPage, setNextPage] = useState(null)
     // Previous pages history
     const [prevPages, setPrevPages] = useState([])
 
-    // Construye la URL dinámicamente
+    const dietOptions = dietOptionsList
+
+    const healthOptions = healthOptionsList
+
     const buildUrl = () => {
         let baseUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=${appId}&app_key=${appKey}`
 
-        if (diet.length > 0) baseUrl += `&diet=${diet.join(',')}` // Concatenar los elementos seleccionados de 'diet'
-        if (health.length > 0) baseUrl += `&health=${health.join(',')}` // Concatenar los elementos seleccionados de 'health'
-        if (mealType.length > 0) baseUrl += `&mealType=${mealType.join(',')}` // Concatenar los elementos seleccionados de 'mealType'
+        if (diet.length > 0) {
+            diet.forEach(filter => {
+                baseUrl += `&diet=${filter}`
+            })
+        }
+
+        if (health.length > 0) {
+            health.forEach(filter => {
+                baseUrl += `&health=${filter}`
+            })
+        }
 
         return baseUrl
     }
@@ -51,18 +64,16 @@ const SearchPage = () => {
             setLoading(false)
         } catch (error) {
             console.error("Error fetching data:", error)
-            setError(error.message)
             setLoading(false)
         }
     }
 
     useEffect(() => {
-        // Llama a la API solo si hay una consulta de búsqueda
-        if (searchQuery) {
+        if (searchQuery !== null) {
             const url = buildUrl()
             fetchData(url)
         }
-    }, [searchQuery, diet, health, mealType]) // Ejecutar al cambiar filtros o la consulta
+    }, [searchQuery])
 
     const loadNextPage = () => {
         if (nextPage) {
@@ -101,7 +112,7 @@ const SearchPage = () => {
     }
 
     const handleChange = (e) => {
-        setSearchQuery(e.target.value)
+        e.preventDefault()
     }
 
     const handleFilterChange = (filterType, value) => {
@@ -109,22 +120,19 @@ const SearchPage = () => {
             case "diet":
                 setDiet((prevDiet) =>
                     prevDiet.includes(value)
-                        ? prevDiet.filter(item => item !== value) // Remove if already selected
-                        : [...prevDiet, value] // Add if not selected
+                        // Remove if already selected
+                        ? prevDiet.filter(item => item !== value)
+                        // Add if not selected
+                        : [...prevDiet, value]
                 )
                 break
             case "health":
                 setHealth((prevHealth) =>
                     prevHealth.includes(value)
-                        ? prevHealth.filter(item => item !== value) // Remove if already selected
-                        : [...prevHealth, value] // Add if not selected
-                )
-                break
-            case "mealType":
-                setMealType((prevMealType) =>
-                    prevMealType.includes(value)
-                        ? prevMealType.filter(item => item !== value) // Remove if already selected
-                        : [...prevMealType, value] // Add if not selected
+                        // Remove if already selected
+                        ? prevHealth.filter(item => item !== value)
+                        // Add if not selected
+                        : [...prevHealth, value]
                 )
                 break
             default:
@@ -145,63 +153,18 @@ const SearchPage = () => {
                 />
                 <div id="filters-container" className="dropdown">
                     <div className="dropdown-content">
-                        <div>
-                            <h4>Diet</h4>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={diet.includes("high-protein")}
-                                    onChange={() => handleFilterChange("diet", "high-protein")}
-                                />
-                                High Protein
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={diet.includes("low-carb")}
-                                    onChange={() => handleFilterChange("diet", "low-carb")}
-                                />
-                                Low Carb
-                            </label>
-                        </div>
-                        <div>
-                            <h4>Health</h4>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={health.includes("vegan")}
-                                    onChange={() => handleFilterChange("health", "vegan")}
-                                />
-                                Vegan
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={health.includes("vegetarian")}
-                                    onChange={() => handleFilterChange("health", "vegetarian")}
-                                />
-                                Vegetarian
-                            </label>
-                        </div>
-                        <div>
-                            <h4>Meal Type</h4>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={mealType.includes("breakfast")}
-                                    onChange={() => handleFilterChange("mealType", "breakfast")}
-                                />
-                                Breakfast
-                            </label>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={mealType.includes("dinner")}
-                                    onChange={() => handleFilterChange("mealType", "dinner")}
-                                />
-                                Dinner
-                            </label>
-                        </div>
+                        <FilterRequirementCheckboxes
+                            title="Diet"
+                            options={dietOptions}
+                            selectedOptions={diet}
+                            onChange={handleFilterChange}
+                        />
+                        <FilterRequirementCheckboxes
+                            title="Health"
+                            options={healthOptions}
+                            selectedOptions={health}
+                            onChange={handleFilterChange}
+                        />
                     </div>
                 </div>
             </div>
