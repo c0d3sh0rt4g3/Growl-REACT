@@ -1,0 +1,91 @@
+body{
+    color: var(--fourth-palette-colour);
+    background-color: var(--fourth-palette-colour);
+}
+
+#grid-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+#food-photo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 75vh;
+}
+
+#food-photo{
+    height: 260px;
+    margin-left: 5px;
+    width: auto;
+}
+
+.food-btn{
+    background-color: var(--first-palette-colour);
+    color: var(--fourth-palette-colour);
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: 30px;
+    width: 180px;
+    font-size: 15px;
+}
+
+.food-btn:hover{
+    background-color: var(--fourth-palette-colour);
+    color: var(--first-palette-colour);
+    border: 2px solid var(--first-palette-colour);
+}
+
+#food-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--second-palette-colour);
+    height: 120px;
+    width: auto;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#ingredients-container{
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+}
+
+#ingredients, #nutritional-values-and-tags, #tags{
+    color: var(--second-palette-colour);
+    grid-row: 2;
+}
+
+#nutritional-values-and-tags, #tags{
+    font-size:  17px;
+}
+
+
+#ingredients h3, #nutritional-values-and-tags h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    #grid-wrapper, #ingredients-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 90vh;
+    }
+    #ingredients-container article{
+        width: 50vw;
+    }
+    #food-photo{
+        height: 25vh;
+        margin-left: 5px;
+        padding-top: 10px;
+        width: auto;
+    }
+}

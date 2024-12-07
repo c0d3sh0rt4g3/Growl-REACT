@@ -178,7 +178,7 @@ const SearchPage = () => {
                 {results.length > 0 ? (
                     <>
                         {results.map(food => {
-                            const foodId = getRecipeId(food);
+                            const foodId = getRecipeId(food)
                             return <FoodCard key={foodId} food={food} foodId={foodId} />
                         })}
                     </>

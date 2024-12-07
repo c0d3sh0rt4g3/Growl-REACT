@@ -47,7 +47,7 @@ export const router = createBrowserRouter ([
                 element: <SearchPage/>
             },
             {
-                path: "/search/recipe/:id",
+                path: "/search/recipe/:foodId",
                 element: <Recipe/>
             }
         ]

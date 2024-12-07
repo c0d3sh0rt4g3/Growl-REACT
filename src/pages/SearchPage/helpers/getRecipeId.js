@@ -1,1 +1,1 @@
-export const getRecipeId = (food) => food.uri.split("#")[1]
+export const getRecipeId = (food) => food.uri.split("#recipe_")[1]
