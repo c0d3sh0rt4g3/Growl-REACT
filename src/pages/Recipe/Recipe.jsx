@@ -10,8 +10,6 @@ const Recipe = () => {
     // Extract foodId from URL params
     const { foodId } = useParams()
 
-    const [alert, setAlert] = useState({ show: false, message: "", type: "" })
-
     const appId = import.meta.env.VITE_EDAMAM_APP_ID
     const appKey = import.meta.env.VITE_EDAMAM_APP_KEY
 
@@ -19,8 +17,12 @@ const Recipe = () => {
     const [recipe, setRecipe] = useState(null)
     // State to handle errors
     const [error, setError] = useState(null)
+    const [bookmarked, setBookmarked] = useState(false)
 
     const navigate = useNavigate()
+
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+    const usersFromDB = JSON.parse(localStorage.getItem("usersDB"))
 
     const fetchData = async () => {
         try {
@@ -44,8 +46,6 @@ const Recipe = () => {
 
     const addToBookmarks = (e) => {
         e.stopPropagation()
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"))
-        const usersFromDB = JSON.parse(localStorage.getItem("usersDB"))
 
         if (!isBookmarked(currentUser.bookmarks)) {
             const bookmarkedFood = {
@@ -68,10 +68,15 @@ const Recipe = () => {
         }
     }
 
+    const checkBookmarked = () => {
+        isBookmarked(currentUser.bookmarks) && setBookmarked(true)
+    }
+
     // Fetch data when the component loads
     useEffect(() => {
+        checkBookmarked()
         fetchData()
-    }, [foodId])
+    }, [foodId, currentUser])
 
     // Show a loading message, error, or recipe details
     if (error) {
@@ -90,7 +95,7 @@ const Recipe = () => {
         <main id="grid-wrapper">
             <aside id="food-photo-container">
                 <img id="food-photo" src={recipe.image} alt="BBQ Beef Brisket"/>
-                <button className="food-btn" onClick={addToBookmarks}>Bookmark</button>
+                <button className="food-btn" onClick={addToBookmarks}>{bookmarked ? "Already bookmarked" : "Bookmark"}</button>
                 <button className="food-btn" onClick={travelToSearchPage}>Searchpage</button>
             </aside>
             <section id="ingredients-container">
