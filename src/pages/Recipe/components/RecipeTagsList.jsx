@@ -5,10 +5,10 @@ const RecipeTagsList = ({ healthLabels, dietLabels }) => {
     const allTags = [...healthLabels, ...dietLabels];
 
     return (
-        <div>
-            <p>{allTags.join(', ')}</p>
-        </div>
-    );
+        <p>
+            {allTags.join(', ')}
+        </p>
+    )
 };
 
 export default RecipeTagsList;

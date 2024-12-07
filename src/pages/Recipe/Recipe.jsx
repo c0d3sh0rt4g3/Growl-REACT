@@ -1,57 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import {useNavigate, useParams} from "react-router-dom"
 import "../../css/recipe-page.css"
-import IngredientsList from "./components/IngredientsList.jsx";
-import NutritionionalValuesList from "./components/NutriniotalValuesList.jsx";
-import RecipeTagsList from "./components/RecipeTagsList.jsx";
+import IngredientsList from "./components/IngredientsList.jsx"
+import NutritionionalValuesList from "./components/NutriniotalValuesList.jsx"
+import RecipeTagsList from "./components/RecipeTagsList.jsx"
+import CustomAlert from "../components/CustomAlert.jsx";
 
 const Recipe = () => {
-    const { foodId } = useParams(); // Extract foodId from URL params
-    const appId = import.meta.env.VITE_EDAMAM_APP_ID; // Your App ID
-    const appKey = import.meta.env.VITE_EDAMAM_APP_KEY; // Your App Key
-    const [recipe, setRecipe] = useState(null); // State to hold the recipe data
-    const [error, setError] = useState(null); // State to handle errors
+    // Extract foodId from URL params
+    const { foodId } = useParams()
+
+    const [alert, setAlert] = useState({ show: false, message: "", type: "" })
+
+    const appId = import.meta.env.VITE_EDAMAM_APP_ID
+    const appKey = import.meta.env.VITE_EDAMAM_APP_KEY
+
+    // State to hold the recipe data
+    const [recipe, setRecipe] = useState(null)
+    // State to handle errors
+    const [error, setError] = useState(null)
+
+    const navigate = useNavigate()
 
     const fetchData = async () => {
         try {
             // Construct the API URL
-            const url = `https://api.edamam.com/api/recipes/v2/${foodId}?type=public&app_id=${appId}&app_key=${appKey}`;
-            const response = await fetch(url);
+            const url = `https://api.edamam.com/api/recipes/v2/${foodId}?type=public&app_id=${appId}&app_key=${appKey}`
+            const response = await fetch(url)
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status}`)
             }
 
-            const data = await response.json();
-            setRecipe(data.recipe);
+            const data = await response.json()
+            setRecipe(data.recipe)
         } catch (error) {
-            console.error("Error fetching data:", error);
-            setError("Failed to fetch the recipe. Please try again.");
+            console.error("Error fetching data:", error)
+            setError("Failed to fetch the recipe. Please try again.")
         }
-    };
+    }
+    // Checks if the recipe is already on bookmarks
+    const isBookmarked = (bookmarks) => bookmarks.some(bookmarked => bookmarked.id === foodId)
 
-    // Fetch data when the component mounts or when foodId changes
-    useEffect(() => {
-        if (foodId) {
-            fetchData();
+    const addToBookmarks = (e) => {
+        e.stopPropagation()
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+        const usersFromDB = JSON.parse(localStorage.getItem("usersDB"))
+
+        if (!isBookmarked(currentUser.bookmarks)) {
+            const bookmarkedFood = {
+                id: foodId,
+                name: recipe.label
+            }
+
+            currentUser.bookmarks.push(bookmarkedFood)
+
+            // We find the index where currentUser is located
+            const userIndex = usersFromDB.findIndex(user => user.id === currentUser.id)
+
+            if (userIndex !== -1) {
+                // Update the user on the users list
+                usersFromDB[userIndex] = currentUser
+                // Save on local storage
+                localStorage.setItem("currentUser", JSON.stringify(currentUser))
+                localStorage.setItem("usersDB", JSON.stringify(usersFromDB))
+            }
         }
-    }, [foodId]);
+    }
+
+    // Fetch data when the component loads
+    useEffect(() => {
+        fetchData()
+    }, [foodId])
 
     // Show a loading message, error, or recipe details
     if (error) {
-        return <p>{error}</p>;
+        return <p>{error}</p>
     }
 
     if (!recipe) {
-        return <p>Loading...</p>;
+        return <p>Loading...</p>
+    }
+
+    const travelToSearchPage = () => {
+        navigate(`/search`)
     }
 
     return (
         <main id="grid-wrapper">
             <aside id="food-photo-container">
                 <img id="food-photo" src={recipe.image} alt="BBQ Beef Brisket"/>
-                <button className="food-btn">Bookmark</button>
-                <button className="food-btn">Searchpage</button>
+                <button className="food-btn" onClick={addToBookmarks}>Bookmark</button>
+                <button className="food-btn" onClick={travelToSearchPage}>Searchpage</button>
             </aside>
             <section id="ingredients-container">
                 <h1 id="food-name">{recipe.label}</h1>
@@ -71,7 +111,7 @@ const Recipe = () => {
                 </article>
             </section>
         </main>
-    );
-};
+    )
+}
 
-export default Recipe;
+export default Recipe

@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {validateEmailRegex} from "../../helpers/validateEmail.js";
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext.jsx";
 import {signIn} from "../../config/Firebase.jsx";
 import CustomAlert from "../components/CustomAlert.jsx";
