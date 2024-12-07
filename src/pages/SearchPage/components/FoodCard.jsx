@@ -6,7 +6,8 @@ const FoodCard = ({food, foodId}) => {
     const isBookmarked = (bookmarks) => bookmarks.some(bookmarked => bookmarked.id === foodId)
     const navigate = useNavigate()
 
-    const addToBookmarks = () => {
+    const addToBookmarks = (e) => {
+        e.stopPropagation()
         const currentUser = JSON.parse(localStorage.getItem("currentUser"))
         const usersFromDB = JSON.parse(localStorage.getItem("usersDB"))
 
@@ -24,7 +25,6 @@ const FoodCard = ({food, foodId}) => {
             if (userIndex !== -1) {
                 // Update the user on the users list
                 usersFromDB[userIndex] = currentUser
-                console.log("qa")
                 // Save on local storage
                 localStorage.setItem("currentUser", JSON.stringify(currentUser))
                 localStorage.setItem("usersDB", JSON.stringify(usersFromDB))
