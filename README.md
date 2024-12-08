@@ -14,7 +14,8 @@
 5. [API Integration and Asynchronous Communication in Growl](#api-integration-and-asynchronous-communication-in-growl)
    - [SearchPage Component](#searchpage-component)
 6. [Figma](#design-on-figma)
-7. [Final conclusion](#final-conclusion)
+7. [Deployment](#deployment)
+8. [Final conclusion](#final-conclusion)
 
 ## Introduction
 This project is a Web App developed using **React + Vite**. It offers features such as recipe searching,  
@@ -186,7 +187,10 @@ useEffect(() => {
 ```
 
 ## Figma
-[Link to initial design on figma](https://www.figma.com/design/95BlLMMDkeTdRIZzDvuEIk/Proyecto-Sass?node-id=0-1&t=8oFpFg4GZkfdGPok-1)
+Link to initial design on figma: [Growl](https://www.figma.com/design/95BlLMMDkeTdRIZzDvuEIk/Proyecto-Sass?node-id=0-1&t=8oFpFg4GZkfdGPok-1)
+
+## Deployment
+App deployed on netlify: [Growl](https://growl-react.netlify.app)
 
 ## Final conclusion
 With this project I consider I've improved my skills on React, I've faced some problems with the API like trying to 
