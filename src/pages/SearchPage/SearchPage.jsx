@@ -4,6 +4,7 @@ import FoodCard from "./components/FoodCard.jsx"
 import FilterRequirementCheckboxes from "./components/FilterRequirementCheckboxes.jsx"
 import {dietOptionsList, healthOptionsList} from "../../helpers/healthAndDietOptions.js";
 import {getRecipeId} from "./helpers/getRecipeId.js";
+import closeImg from "../../assets/close.png"
 
 const SearchPage = () => {
     const appId = import.meta.env.VITE_EDAMAM_APP_ID
@@ -23,6 +24,13 @@ const SearchPage = () => {
 
     const dietOptions = dietOptionsList
     const healthOptions = healthOptionsList
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
 
     const buildUrl = () => {
         let baseUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=${appId}&app_key=${appKey}`
@@ -147,7 +155,7 @@ const SearchPage = () => {
 
     return (
         <>
-            <div id="searchbar-container" className="searchbar-with-dropdown">
+            <div id="searchbar-container" className="searchbar">
                 <input
                     id="recipe-searchbar"
                     type="text"
@@ -156,51 +164,54 @@ const SearchPage = () => {
                     onKeyDown={handleKeyDown}
                     onChange={handleChange}
                 />
-                <div id="filters-container" className="dropdown">
-                    <div className="dropdown-content">
-                        <button onClick={applyFilters}>Apply filters</button>
-                        <FilterRequirementCheckboxes
-                            title="Diet"
-                            options={dietOptions}
-                            selectedOptions={diet}
-                            onChange={handleFilterChange}
-                        />
-                        <FilterRequirementCheckboxes
-                            title="Health"
-                            options={healthOptions}
-                            selectedOptions={health}
-                            onChange={handleFilterChange}
-                        />
-                    </div>
+                <button id="toggle-filters-button" onClick={toggleSidebar}>
+                    Filters
+                </button>
+            </div>
+            <div id="sidebar" className={isSidebarOpen ? "sidebar open" : "sidebar"}>
+                <div className="sidebar-content">
+                    <img className={"close-sidebar"} src={closeImg} alt={"Close"} onClick={toggleSidebar}/>
+                    <h3>Filters</h3>
+                    <FilterRequirementCheckboxes
+                        title="Diet"
+                        options={dietOptions}
+                        selectedOptions={diet}
+                        onChange={handleFilterChange}
+                    />
+                    <FilterRequirementCheckboxes
+                        title="Health"
+                        options={healthOptions}
+                        selectedOptions={health}
+                        onChange={handleFilterChange}
+                    />
+                    <button onClick={applyFilters}>Apply Filters</button>
                 </div>
             </div>
             <div id="search-results-container">
                 {results.length > 0 ? (
-                    <>
-                        {results.map(food => {
-                            const foodId = getRecipeId(food)
-                            return <FoodCard key={foodId} food={food} foodId={foodId} />
-                        })}
-                    </>
+                    results.map(food => {
+                        const foodId = getRecipeId(food);
+                        return <FoodCard key={foodId} food={food} foodId={foodId} />;
+                    })
                 ) : (
                     <div>No results found.</div>
                 )}
             </div>
             <div id="pagination-buttons-container">
                 {prevPages.length > 1 && (
-                    // Only show "Previous Page" button if there are previous pages
                     <button onClick={loadPreviousPage} disabled={loading}>
                         Previous Page
                     </button>
                 )}
                 {nextPage && (
                     <button onClick={loadNextPage} disabled={loading}>
-                    {loading ? "Loading..." : "Next Page"}
+                        {loading ? "Loading..." : "Next Page"}
                     </button>
                 )}
             </div>
         </>
-    )
+    );
+
 }
 
 export default SearchPage

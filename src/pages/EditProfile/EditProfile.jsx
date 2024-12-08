@@ -21,7 +21,7 @@ const EditProfile = () => {
   const formik = useFormik({
     initialValues: {
       username: user.username || '',
-      profilePicture: user.profilePicture || '',  // Profile picture URL
+      pfpUrl: user.pfpUrl || '',  // Profile picture URL
       tags: user.tags || [], // tags come from health and diet options
     },
     validationSchema: Yup.object({
@@ -87,9 +87,9 @@ const EditProfile = () => {
         className="account-details-textbox"
         placeholder="Profile Picture URL"
         aria-label="Profile Picture"
-        value={formik.values.profilePicture}
+        value={formik.values.pfpUrl}
         onChange={formik.handleChange}
-        name="profilePicture"
+        name="pfpUrl"
       />
 
       {/* Health Tags (Checkboxes) */}
