@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {validateEmailRegex} from "../../helpers/validateEmail.js";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext.jsx";
 import {signIn} from "../../config/Firebase.jsx";
 import CustomAlert from "../components/CustomAlert.jsx";
@@ -118,6 +118,8 @@ const SignIn = () => {
                             <p className="error-message">{errors.password}</p>
                         )}
                         <p>Forgot your password? Click here!</p>
+
+                        <p>You dont have an account? <NavLink to={"/signup"}>Make one!</NavLink></p>
 
                         <button type="submit" id="form-signin-btn" disabled={isSubmitting}>
                             Sign up
