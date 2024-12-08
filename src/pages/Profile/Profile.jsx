@@ -49,10 +49,9 @@ const Profile = () => {
     return (
         <main id="grid-wrapper">
             <aside id="user-data-column">
-                {/* Conditionally display profile picture */}
                 <img
                     id="pfp"
-                    src={user.profilePicture ? user.profilePicture : pfpImg}
+                    src={user.pfpUrl ? user.pfpUrl : pfpImg}
                     alt="your profile picture"
                 />
                 <h3 id="email">{user.email}</h3>
