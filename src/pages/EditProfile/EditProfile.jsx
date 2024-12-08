@@ -66,69 +66,71 @@ const EditProfile = () => {
   }, [formik.values]);
 
   return (
-    <main id="edit-account-fields-container">
-      <h1 id="edit-account-h1">Edit Account</h1>
-      <input
-        type="text"
-        className="account-details-textbox"
-        placeholder="Username"
-        aria-label="Username"
-        value={formik.values.username}
-        onChange={formik.handleChange}
-        name="username"
-      />
-      {formik.errors.username && formik.touched.username ? <div>{formik.errors.username}</div> : null}
-      <input
-        type="text"
-        className="account-details-textbox"
-        placeholder="Profile Picture URL"
-        aria-label="Profile Picture"
-        value={formik.values.pfpUrl}
-        onChange={formik.handleChange}
-        name="pfpUrl"
-      />
-      <div className="tags-section">
-        <h2>Health Tags</h2>
-        <div className="tags-options">
-          {healthOptionsList.map((option) => (
-            <div key={option.value}>
-              <input
-                type="checkbox"
-                name={option.value}
-                checked={formik.values.tags.includes(option.value)}
-                onChange={handleCheckboxChange}
-              />
-              <label>{option.label}</label>
+      <main id={"edit-account-container"}>
+        <div id="edit-account-fields-container">
+          <h1 id="edit-account-h1">Edit Account</h1>
+          <input
+            type="text"
+            className="account-details-textbox"
+            placeholder="Username"
+            aria-label="Username"
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            name="username"
+          />
+          {formik.errors.username && formik.touched.username ? <div>{formik.errors.username}</div> : null}
+          <input
+            type="text"
+            className="account-details-textbox"
+            placeholder="Profile Picture URL"
+            aria-label="Profile Picture"
+            value={formik.values.pfpUrl}
+            onChange={formik.handleChange}
+            name="pfpUrl"
+          />
+          <div className="tags-section">
+            <h2>Health Tags</h2>
+            <div className="tags-options">
+              {healthOptionsList.map((option) => (
+                <div key={option.value}>
+                  <input
+                    type="checkbox"
+                    name={option.value}
+                    checked={formik.values.tags.includes(option.value)}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label>{option.label}</label>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      {/* Diet Tags (Checkboxes) */}
-      <div className="tags-section">
-        <h2>Diet Tags</h2>
-        <div className="tags-options">
-          {dietOptionsList.map((option) => (
-            <div key={option.value}>
-              <input
-                type="checkbox"
-                name={option.value}
-                checked={formik.values.tags.includes(option.value)}
-                onChange={handleCheckboxChange}
-              />
-              <label>{option.label}</label>
+          {/* Diet Tags (Checkboxes) */}
+          <div className="tags-section">
+            <h2>Diet Tags</h2>
+            <div className="tags-options">
+              {dietOptionsList.map((option) => (
+                <div key={option.value}>
+                  <input
+                    type="checkbox"
+                    name={option.value}
+                    checked={formik.values.tags.includes(option.value)}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label>{option.label}</label>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <button
+            type="submit"
+            id="confirm-changes-btn"
+            onClick={formik.handleSubmit}
+          >
+            Confirm Changes
+          </button>
         </div>
-      </div>
-      <button
-        type="submit"
-        id="confirm-changes-btn"
-        onClick={formik.handleSubmit}
-      >
-        Confirm Changes
-      </button>
-    </main>
+      </main>
   );
 };
 

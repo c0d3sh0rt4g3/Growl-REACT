@@ -1,6 +1,7 @@
-body{
+#edit-account-container {
     background-color: var(--first-palette-colour);
     color: var(--fourth-palette-colour);
+    height: 100vh;
 }
 
 #edit-account-h1{
