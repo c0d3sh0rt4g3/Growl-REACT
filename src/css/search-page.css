@@ -22,7 +22,7 @@ body{
     display: grid;
     justify-content: center;
     gap: 10px;
-    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-columns: repeat(auto-fill, 215px);
     margin-top: 10px;
     padding-bottom: 70px;
 }
