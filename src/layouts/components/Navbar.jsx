@@ -3,6 +3,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import "../../css/header.css";
 import {UserContext} from "../../context/UserContext.jsx";
 import {signOut} from "../../config/Firebase.jsx";
+import logo from "../../src/assets/growl_logo.png";
 
 const Navbar = () => {
     const { user, setUser } = useContext(UserContext)
@@ -24,7 +25,7 @@ const Navbar = () => {
     return (
         <header id="growl-header">
             <section id="logo-and-name-container">
-                <img src="../../src/assets/growl_logo.png" alt="Growl logo"/>
+                <img src={logo} alt="Growl logo"/>
                 <h3><NavLink to={"/"} className={"btn btn-outline-primary"}>Growl</NavLink></h3>
             </section>
             <nav id="header-btn-container">
