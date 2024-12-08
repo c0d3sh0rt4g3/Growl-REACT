@@ -37,7 +37,7 @@ etc.
 - Main profile page where we can see our bokkmarked recipes and deleted them from bookmarks as well.
 - Edit profile page where we can edit some profile settings such as our name, profile picture and recipes tags.
 
-### Error handling 
+### Error handling
 - Custom 404 page with an animation.
 
 ## Project Structure:
@@ -183,3 +183,8 @@ useEffect(() => {
     fetchData(initialUrl)
 }, [])
 ```
+
+## Final conclusion
+With this project I consider I've improved my skills on React, I've faced some problems with the API like trying to 
+paginate it due to how the API is made, it got successfully fixed just by, I also got some problems with Formik because 
+in a first stance, I didn't understand it correctly, after reading and seeing examples online I got no further problem.
