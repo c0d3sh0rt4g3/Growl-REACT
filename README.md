@@ -1,5 +1,21 @@
 # Growl
 
+# Index
+
+1. [Introduction](#introduction)
+2. [Main features](#main-features)
+   - [User authentication](#user-authentication)
+   - [Search](#search)
+   - [Detailed recipe page](#detailed-recipe-page)
+   - [Profile managing](#profile-managing)
+   - [Error handling](#error-handling)
+3. [Project Structure](#project-structure)
+4. [Routing](#routing)
+5. [API Integration and Asynchronous Communication in Growl](#api-integration-and-asynchronous-communication-in-growl)
+   - [SearchPage Component](#searchpage-component)
+
+
+## Introduction
 This project is a Web App developed using **React + Vite**. It offers features such as recipe searching,  
 bookmarking and filtering by ingredients, colories and diet type.
 
@@ -11,11 +27,15 @@ bookmarking and filtering by ingredients, colories and diet type.
 - Contact form.
 
 ### Search
-- Allows to search and filter amongst lots of recipes thanks to **Edamam API**.
+- Allows to search and filter amongst lots of recipes thanks to **Edamam API**, as well as bookmarking them.
 
-### Detailed food page
+### Detailed recipe page
 - Specific page for each recipe to display all its data such as ingredients, allergens, diet to which it could belong 
 etc.
+
+### Profile managing.
+- Main profile page where we can see our bokkmarked recipes and deleted them from bookmarks as well.
+- Edit profile page where we can edit some profile settings such as our name, profile picture and recipes tags.
 
 ### Error handling 
 - Custom 404 page with an animation.
@@ -31,6 +51,7 @@ The project is organized in the following folders
   - `helpers/`: JS functions that, as its name tells, help us doing specific task in our app.
   - `layouts/`: General private and public layout folder
     - `LayoutPublic/`: Our public Layout folder. 
+    - `LayoutPrivatec/`: Our private Layout folder. 
   - `pages/`: Our app main pages folder.
   - `router/`: App routes config.
 
@@ -43,12 +64,13 @@ It displays the public layout and the home page (`Home`)
 User related routes: <br>
 - `/login`: SignUp page
 - `/sign-in` Sign in page
+- `/contact-us` Contact form page
 - `/profile` Profile page
   - `/profile/edit` Profile edit page
-- `recipe/:id` Specific recipe page
 
 Search route(`/search`): <br>
-Our recipe searching page.
+- `/search` Our recipe searching page.
+  - `/search/recipe/:foodId` Specific recipe page
 
 Errors: <br>
 Custom 404 error page when the route isn't found
