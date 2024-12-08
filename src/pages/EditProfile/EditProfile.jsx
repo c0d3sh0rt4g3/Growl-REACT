@@ -68,8 +68,6 @@ const EditProfile = () => {
   return (
     <main id="edit-account-fields-container">
       <h1 id="edit-account-h1">Edit Account</h1>
-
-      {/* Username */}
       <input
         type="text"
         className="account-details-textbox"
@@ -80,8 +78,6 @@ const EditProfile = () => {
         name="username"
       />
       {formik.errors.username && formik.touched.username ? <div>{formik.errors.username}</div> : null}
-
-      {/* Profile picture */}
       <input
         type="text"
         className="account-details-textbox"
@@ -91,8 +87,6 @@ const EditProfile = () => {
         onChange={formik.handleChange}
         name="pfpUrl"
       />
-
-      {/* Health Tags (Checkboxes) */}
       <div className="tags-section">
         <h2>Health Tags</h2>
         <div className="tags-options">
@@ -127,8 +121,6 @@ const EditProfile = () => {
           ))}
         </div>
       </div>
-
-      {/* Confirm Changes Button */}
       <button
         type="submit"
         id="confirm-changes-btn"

@@ -150,7 +150,7 @@ const SearchPage = () => {
 
     const applyFilters = () => {
         const url = buildUrl()
-        fetchData(url, false) // Prevent adding to history on filter apply
+        fetchData(url, false)
     }
 
     return (
