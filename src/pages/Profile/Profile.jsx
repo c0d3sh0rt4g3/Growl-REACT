@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import "../../css/profile-page.css"
 import BookmarkedFoodCard from "./components/BookmarkedFoodCard.jsx"
-import pfpImg from "../../assets/pfp.png"
 import { useNavigate } from "react-router-dom"
 import { findUserIndexById } from "../../helpers/findUserIndexById.js"
+
+// Import the fallback profile picture
+import pfpImg from "../../assets/pfp.png"
 
 const Profile = () => {
     // Use state for current user from localStorage
@@ -40,13 +42,22 @@ const Profile = () => {
         setUser(updatedUser)
     }
 
+    const navigateToEditProfile = () => {
+        navigate("/profile/edit")
+    }
+
     return (
         <main id="grid-wrapper">
             <aside id="user-data-column">
-                <img id="pfp" src={pfpImg} alt="your profile picture" />
+                {/* Conditionally display profile picture */}
+                <img
+                    id="pfp"
+                    src={user.profilePicture ? user.profilePicture : pfpImg}
+                    alt="your profile picture"
+                />
                 <h3 id="email">{user.email}</h3>
                 <p id="tags">{user.tags.length > 0 && user.tags.join(", ")}</p>
-                <button className="user-btn">Edit account details</button>
+                <button className="user-btn" onClick={navigateToEditProfile}>Edit account details</button>
                 <button className="user-btn" onClick={backToSearchPage}>Back to search page</button>
             </aside>
             <section id="bookmarked-foods-container">
@@ -63,4 +74,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default Profile;

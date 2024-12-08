@@ -57,14 +57,12 @@ export const router = createBrowserRouter ([
         element: <LayoutPrivate/>,
         children: [
             {
-                index: "/profile",
-                element: <Profile/>,
-                children: [
-                    {
-                        path: "/profile/edit",
-                        element: <EditProfile/>
-                    }
-                ]
+                index: true,
+                element: <Profile/>
+            },
+             {
+                path: "/profile/edit",
+                element: <EditProfile/>
             }
         ]
     }

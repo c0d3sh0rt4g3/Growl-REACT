@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "../../css/search-page.css"
 import FoodCard from "./components/FoodCard.jsx"
 import FilterRequirementCheckboxes from "./components/FilterRequirementCheckboxes.jsx"
-import {dietOptionsList, healthOptionsList} from "./helpers/healthAndDietOptions.js";
+import {dietOptionsList, healthOptionsList} from "../../helpers/healthAndDietOptions.js";
 import {getRecipeId} from "./helpers/getRecipeId.js";
 
 const SearchPage = () => {
