@@ -97,7 +97,7 @@ const Recipe = () => {
     }
 
     return (
-        <main id="grid-wrapper">
+        <main id="recipe-grid-wrapper">
             <aside id="food-photo-container">
                 <img id="food-photo" src={recipe.image} alt={recipe.label} />
                 <button className="food-btn" onClick={addToBookmarks}>

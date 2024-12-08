@@ -1,9 +1,6 @@
-body{
+#recipe-grid-wrapper{
     color: var(--fourth-palette-colour);
     background-color: var(--fourth-palette-colour);
-}
-
-#grid-wrapper{
     display: grid;
     grid-template-columns: repeat(3, auto);
 }
