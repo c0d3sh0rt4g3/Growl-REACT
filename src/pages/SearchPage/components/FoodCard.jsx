@@ -1,6 +1,7 @@
 import React from 'react'
 import bookmarkIcon from '../../../assets/bookmark.png'
 import {useNavigate} from "react-router-dom";
+import {findUserIndexById} from "../../../helpers/findUserIndexById.js";
 
 const FoodCard = ({food, foodId}) => {
     const isBookmarked = (bookmarks) => bookmarks.some(bookmarked => bookmarked.id === foodId)
@@ -20,7 +21,7 @@ const FoodCard = ({food, foodId}) => {
             currentUser.bookmarks.push(bookmarkedFood)
 
             // We find the index where currentUser is located
-            const userIndex = usersFromDB.findIndex(user => user.id === currentUser.id)
+            const userIndex = findUserIndexById(usersFromDB, currentUser.id)
 
             if (userIndex !== -1) {
                 // Update the user on the users list
