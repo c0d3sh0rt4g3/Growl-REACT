@@ -13,7 +13,8 @@
 4. [Routing](#routing)
 5. [API Integration and Asynchronous Communication in Growl](#api-integration-and-asynchronous-communication-in-growl)
    - [SearchPage Component](#searchpage-component)
-
+6. [Figma](#design-on-figma)
+7. [Final conclusion](#final-conclusion)
 
 ## Introduction
 This project is a Web App developed using **React + Vite**. It offers features such as recipe searching,  
@@ -184,7 +185,13 @@ useEffect(() => {
 }, [])
 ```
 
+## Figma
+[Link to initial design on figma](https://www.figma.com/design/95BlLMMDkeTdRIZzDvuEIk/Proyecto-Sass?node-id=0-1&t=8oFpFg4GZkfdGPok-1)
+
 ## Final conclusion
 With this project I consider I've improved my skills on React, I've faced some problems with the API like trying to 
 paginate it due to how the API is made, it got successfully fixed just by, I also got some problems with Formik because 
-in a first stance, I didn't understand it correctly, after reading and seeing examples online I got no further problem.
+in a first stance, I didn't understand it correctly, after reading and seeing examples online I got no further problem, 
+finally I also experienced problems while leraning how REACT handles css styles, I managed to style my page while 
+investigating it, anyways, I recognise it's hasn't the better practises on a design matter so it'll be improved in future 
+projects.
