@@ -104,8 +104,6 @@ const EditProfile = () => {
               ))}
             </div>
           </div>
-
-          {/* Diet Tags (Checkboxes) */}
           <div className="tags-section">
             <h2>Diet Tags</h2>
             <div className="tags-options">
