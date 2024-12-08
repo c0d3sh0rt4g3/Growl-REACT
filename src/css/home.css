@@ -1,13 +1,8 @@
-body{
+#welcoming-texts-container{
     color: var(--fourth-palette-colour);
     background-image: url("../assets/homepage-background-img.jpg");
-    background-repeat: repeat; 
-}
-
-#welcoming-texts-container{
-    max-width: 80vh;
-    margin: 0 auto;
-    height: 75vh;
+    background-repeat: repeat;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

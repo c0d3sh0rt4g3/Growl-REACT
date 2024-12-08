@@ -1,0 +1,46 @@
+#edit-account-container {
+    background-color: var(--first-palette-colour);
+    color: var(--fourth-palette-colour);
+    height: 100vh;
+}
+
+#edit-account-h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    width: auto;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#edit-account-fields-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 575px;
+}
+
+.account-details-textbox{
+    background-color: var(--fourth-palette-colour);
+    border-radius: 5px;
+    color: var(--first-palette-colour);
+    height: 3vh;
+    min-width: 25vw;
+    padding: 10px;
+}
+
+.account-details-textbox:focus{
+    outline: none;
+}
+
+#confirm-changes-btn{
+    background-color: var(--second-palette-colour);
+    color: var(--fourth-palette-colour);
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    width: 180px;
+    font-size: 15px;
+}

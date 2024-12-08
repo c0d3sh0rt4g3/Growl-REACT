@@ -119,6 +119,8 @@ const SignIn = () => {
                         )}
                         <p>Forgot your password? Click here!</p>
 
+                        <p>You dont have an account? <NavLink to={"/signup"}>Make one!</NavLink></p>
+
                         <button type="submit" id="form-signin-btn" disabled={isSubmitting}>
                             Sign up
                         </button>

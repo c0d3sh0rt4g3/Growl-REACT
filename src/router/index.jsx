@@ -35,10 +35,6 @@ export const router = createBrowserRouter ([
             {
                 path: "/signup",
                 element: <SignUp/>
-            },
-            {
-                path: "/recipe/:id",
-                element: <Recipe/>
             }
         ]
     },
@@ -49,6 +45,10 @@ export const router = createBrowserRouter ([
             {
                 index: true,
                 element: <SearchPage/>
+            },
+            {
+                path: "/search/recipe/:foodId",
+                element: <Recipe/>
             }
         ]
     },
@@ -57,14 +57,12 @@ export const router = createBrowserRouter ([
         element: <LayoutPrivate/>,
         children: [
             {
-                index: "/profile",
-                element: <Profile/>,
-                children: [
-                    {
-                        path: "/profile/edit",
-                        element: <EditProfile/>
-                    }
-                ]
+                index: true,
+                element: <Profile/>
+            },
+             {
+                path: "/profile/edit",
+                element: <EditProfile/>
             }
         ]
     }
