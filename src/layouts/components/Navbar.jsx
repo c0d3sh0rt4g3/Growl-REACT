@@ -3,7 +3,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import "../../css/header.css";
 import {UserContext} from "../../context/UserContext.jsx";
 import {signOut} from "../../config/Firebase.jsx";
-import logo from "../../src/assets/growl_logo.png";
+import logo from "../../assets/growl_logo.png";
 
 const Navbar = () => {
     const { user, setUser } = useContext(UserContext)
